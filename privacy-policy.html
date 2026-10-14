@@ -1,9 +1,11 @@
 <!doctype html>
 <!--
   ATLAS — privacy policy.
-  Written from what the code actually does (no network calls in src/, no analytics,
-  everything in on-device SQLite). NOT reviewed by a lawyer — have one read it before
-  the app goes on sale publicly.
+  Written from what the code actually does (2026-10-14, app 1.3.0): sign-in with Apple or Google and an account on
+  ATLAS's server (cloud/, Vercel + Neon in Frankfurt), PostHog analytics and session replay (EU) with typed text,
+  heart-rate figures and share-card photos masked (ReplayMask), Sentry crash reports (EU), RevenueCat for
+  subscriptions. Training and Health data stay in on-device SQLite. NOT reviewed by a lawyer — have one read it
+  (minors, COPPA, Israel's Privacy Protection Law amendment 13, GDPR) before the app goes on sale publicly.
   Published by Bar Revah; privacy contact spacebar.post@gmail.com.
   Hosted for App Store Connect; the same URL belongs in LEGAL_URLS
   (src/features/paywall/constants.ts) so the paywall can link to it.
@@ -16,7 +18,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap">
 <style>
   *,*::before,*::after{box-sizing:border-box}
-  :root{--ink:#0F0E0C;--bg1:#161412;--line:rgba(255,250,240,.10);--ember:#FF5A2E;--tx:#F4EFE6;--tx2:#B9B1A4;--tx3:#7E766B}
+  :root{--ink:#0F0E0C;--bg1:#161412;--line:rgba(255,250,240,.10);--ember:#FF5A2E;--tx:#F4EFE6;--tx2:#B9B1A4;--tx3:#8C8478}
   body{margin:0;background:var(--ink);color:var(--tx);font-family:'Rubik',system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
   .wrap{max-width:720px;margin:0 auto;padding:56px 24px 96px}
   .nav{font-size:13px;color:var(--tx3);letter-spacing:.06em;text-transform:uppercase;margin:0 0 40px}
@@ -45,167 +47,216 @@
 
 <section id="en" lang="en" dir="ltr">
   <h1>ATLAS Privacy Policy</h1>
-  <p class="date">Last updated 6 September 2026</p>
+  <p class="date">Last updated 14 October 2026</p>
 
   <div class="lead">
-    <p>ATLAS keeps your training data on your phone. There is no ATLAS account, no ATLAS
-    server holding your workouts, and no analytics or advertising software in the app.</p>
+    <p>Your workouts and your health data stay on your phone. To use ATLAS you sign in with Apple or Google, and
+    our server keeps your account and whether you have Pro. To learn how the app is used and to fix what breaks,
+    ATLAS sends usage events, screen recordings with private details hidden, and crash reports to two services
+    in the European Union. There is no advertising, we never sell data, and we never track you across other apps.</p>
   </div>
 
   <h2>Who we are</h2>
-  <p>ATLAS is published by Bar Revah. Questions about this policy go to
+  <p>ATLAS is published by Bar Revah. Questions about this policy, and any request about your data, go to
   <a href="mailto:spacebar.post@gmail.com">spacebar.post@gmail.com</a>.</p>
 
-  <h2>What ATLAS stores on your device</h2>
-  <p>Everything you enter or generate is written to a database inside the app's own storage
-  on your phone. That includes:</p>
+  <h2>Your account</h2>
+  <p>Signing in with Apple or Google gives us an identifier for you at that provider, your email address (with
+  Apple this can be a private relay address that forwards to you) and, if you share it, your name. Our server
+  also keeps:</p>
   <ul>
-    <li>Your profile: name, age, body weight, maximum heart rate, preferred language and units,
-      weekly goal, usual training time and place, and available equipment.</li>
-    <li>Your routines, exercises and any exercises you create yourself.</li>
-    <li>Every session: sets, weights, repetitions, times, notes, duration and the date.</li>
-    <li>Heart-rate samples recorded during a session, personal records, achievements and progress figures.</li>
+    <li>your language, which world you use (Gym or Football), your platform and app version, and when you last opened the app;</li>
+    <li>your year of birth, if you enter it, so the training rules fit your age;</li>
+    <li>your subscription status as reported by the App Store, any Pro access we gave you, and codes you redeemed.</li>
+  </ul>
+  <p>The server runs on Vercel and its database on Neon in Frankfurt, Germany. Only the publisher can look at
+  accounts, through a private admin page that records every action.</p>
+
+  <h2>What stays on your device</h2>
+  <p>Everything you train and record is written to a database inside the app's own storage on your phone and is
+  not uploaded to our server:</p>
+  <ul>
+    <li>Your profile details: body weight, maximum heart rate, units, weekly goal, usual training time and place, equipment.</li>
+    <li>Your plans, routines and exercises, including ones you create.</li>
+    <li>Every session: sets, weights, repetitions, times, notes, duration and the date, in both worlds.</li>
+    <li>Football check-ins, how sessions felt, your journey, and the friends and invites you keep in the app.</li>
+    <li>Heart-rate samples, personal records, achievements and progress figures.</li>
     <li>Your settings, including reminder times and the quiet window.</li>
   </ul>
-  <p>None of it is uploaded to us. We cannot see it.</p>
+  <p>When you share a card or an invite, it goes only where you choose to send it.</p>
 
   <h2>Apple Health</h2>
-  <p>If you grant permission, ATLAS <strong>reads</strong> heart rate, resting heart rate, heart-rate
-  variability and active energy from Apple Health, only to show how hard a session was, and
-  <strong>writes</strong> your completed sessions back as strength-training workouts so they count
-  toward your rings.</p>
-  <p>Health data read from Apple Health stays on your device and is never sent anywhere.
-  We do not use it for advertising or marketing, and we do not share it. You can withdraw access
-  at any time in the iOS Settings app under Privacy &amp; Security → Health → ATLAS.</p>
+  <p>If you grant permission, ATLAS <strong>reads</strong> heart rate, resting heart rate, heart-rate variability
+  and active energy from Apple Health, only to show how hard a session was, and <strong>writes</strong> your
+  completed sessions back as strength-training workouts so they count toward your rings.</p>
+  <p>Health data never leaves your device: it is not sent to our server, it is not part of analytics, and
+  heart-rate figures are hidden from screen recordings. We do not use it for advertising or marketing and we do not
+  share it. You can withdraw access at any time in the iOS Settings app under Privacy &amp; Security → Health → ATLAS.</p>
 
-  <h2>Heart-rate straps and watches</h2>
-  <p>ATLAS connects over Bluetooth to heart-rate straps and to watches broadcasting heart rate.
-  The connection is direct between the device and your phone. Location permission on Android is
-  requested only because Android requires it to scan for Bluetooth devices; ATLAS does not
-  collect or use your location.</p>
-
-  <h2>Photos</h2>
-  <p>ATLAS can save a share card to your photo library when you ask it to. It requests add-only
-  access and never reads your existing photos.</p>
-
-  <h2>Notifications</h2>
-  <p>Reminders are scheduled on your device by iOS. There is no push server, so no notification
-  content ever leaves your phone.</p>
-
-  <h2>What does leave your device</h2>
-  <p>Three things, and none of them carry your training or health data:</p>
+  <h2>Analytics and screen recordings</h2>
+  <p>ATLAS uses <a href="https://posthog.com/privacy">PostHog</a>, hosted in the EU, to understand how the app is
+  used. It receives:</p>
   <ul>
-    <li><strong>Subscriptions.</strong> If you subscribe, the purchase is processed by Apple.
-      We use RevenueCat to tell whether a subscription is active; it receives the App Store
-      transaction and an anonymous identifier generated by the app. It does not receive your
-      name, your workouts or your health data. See
-      <a href="https://www.revenuecat.com/privacy">RevenueCat's privacy policy</a> and
-      <a href="https://www.apple.com/legal/privacy/">Apple's</a>.</li>
-    <li><strong>App updates.</strong> The app asks Expo's update service whether a newer version
-      of its code is available. That request carries the app version and platform, not your data.</li>
-    <li><strong>Nothing else.</strong> The app makes no other network requests.</li>
+    <li>events such as finishing onboarding, starting or finishing a workout (with its length and number of sets),
+      opening the paywall or redeeming a code, and which screens you open;</li>
+    <li>your account identifier, language, world, age band (never your birth date), platform, app version and
+      whether you have Pro;</li>
+    <li>recordings of the screens as you use the app, so we can see where it is confusing. Text you type,
+      heart-rate figures and photos on share cards are hidden in these recordings.</li>
+  </ul>
+  <p>Your name, email address, notes and anything you write are never sent as analytics.</p>
+
+  <h2>Crash reports</h2>
+  <p>When the app crashes or hits an error, <a href="https://sentry.io/privacy/">Sentry</a>, hosted in the EU,
+  receives technical details: the error, your device model and system version, the app version, the screens and
+  steps that led to it, and your account identifier. It does not receive your name or email address.</p>
+
+  <h2>Subscriptions</h2>
+  <p>Purchases are made through Apple. We use <a href="https://www.revenuecat.com/privacy">RevenueCat</a> to tell
+  whether a subscription is active: it receives the App Store transaction and your account identifier, and tells our
+  server your subscription status. It does not receive your workouts or health data. See also
+  <a href="https://www.apple.com/legal/privacy/">Apple's privacy policy</a>.</p>
+
+  <h2>Other things that leave your device</h2>
+  <ul>
+    <li><strong>App updates.</strong> The app asks Expo's update service whether a newer version of its code is
+      available. That request carries the app version and platform, not your data.</li>
+    <li><strong>Heart-rate straps and watches.</strong> ATLAS connects over Bluetooth directly between the device and
+      your phone. Location permission on Android is requested only because Android requires it to scan for
+      Bluetooth devices; ATLAS does not collect or use your location.</li>
+    <li><strong>Photos.</strong> ATLAS can save a share card to your photo library when you ask. It requests add-only
+      access and never reads your existing photos.</li>
+    <li><strong>Notifications.</strong> Reminders are scheduled on your device. There is no push server.</li>
   </ul>
 
   <h2>What we never do</h2>
   <ul>
     <li>We do not sell or rent your data.</li>
-    <li>We do not track you across other apps or websites, and the app shows no advertising.</li>
+    <li>We do not show advertising or track you across other apps or websites.</li>
     <li>We do not use your health data for marketing, or share it with anyone.</li>
   </ul>
 
   <h2>Deleting your data</h2>
-  <p>Settings → Delete all data erases everything ATLAS has stored. Deleting the app from your
-  phone removes it too. Workouts already written to Apple Health belong to Health, and are removed
-  from there — in the Health app or by revoking ATLAS's access.</p>
+  <p>Me → Account → Delete account removes your account, your Pro access and your subscription record from our
+  server and from RevenueCat. Settings → Delete all data erases everything ATLAS keeps on your phone, and deleting the
+  app removes it too. To also erase the analytics and crash records linked to your account, write to us and we will
+  do it. Workouts already written to Apple Health belong to Health and are removed from there.</p>
 
-  <h2>Children</h2>
-  <p>ATLAS is not directed at children under 13 and we do not knowingly collect data from them.</p>
+  <h2>Young people</h2>
+  <p>ATLAS is used by teenagers as well as adults, and everyone is treated as this policy describes, whatever their
+  age. If you are under 13, or under the age your country sets for agreeing to online services, use ATLAS only with
+  a parent's or guardian's permission. A parent or guardian can ask us at any time to see or delete a child's
+  account.</p>
 
   <h2>Your rights</h2>
-  <p>Because your data never reaches us, there is nothing on our side to export, correct or erase.
-  Everything is in your hands on the device. If you have a question about that, write to
-  <a href="mailto:spacebar.post@gmail.com">spacebar.post@gmail.com</a>.</p>
+  <p>You can ask to see, correct, export or delete the data we hold about you, or object to how we use it, by
+  writing to <a href="mailto:spacebar.post@gmail.com">spacebar.post@gmail.com</a>. We answer within 30 days.</p>
 
   <h2>Changes</h2>
-  <p>If this policy changes we will update the date at the top and, for material changes, say so
-  in the app.</p>
+  <p>If this policy changes we will update the date at the top and, for material changes, say so in the app.</p>
 </section>
 
 <hr>
 
 <section id="he" lang="he" dir="rtl">
   <h1>מדיניות הפרטיות של ATLAS</h1>
-  <p class="date">עודכן לאחרונה ב־6 בספטמבר 2026</p>
+  <p class="date">עודכן לאחרונה ב־14 באוקטובר 2026</p>
 
   <div class="lead">
-    <p>ATLAS שומר את נתוני האימון על הטלפון. אין חשבון ATLAS, אין שרת שמחזיק את האימונים,
-    ואין באפליקציה תוכנות אנליטיקה או פרסום.</p>
+    <p>האימונים ונתוני הבריאות נשארים על הטלפון. השימוש ב־ATLAS מחייב התחברות עם Apple או Google, והשרת שלנו
+    שומר את החשבון ואת מצב המנוי ל־Pro. כדי להבין איך משתמשים באפליקציה ולתקן תקלות, ATLAS שולח אירועי שימוש,
+    הקלטות מסך שבהן פרטים אישיים מוסתרים, ודיווחי קריסה לשני שירותים באיחוד האירופי. אין פרסומות, אין מכירת
+    נתונים, ואין מעקב באפליקציות אחרות.</p>
   </div>
 
   <h2>מי אנחנו</h2>
-  <p>ATLAS מפורסמת על ידי Bar Revah. שאלות בנוגע למדיניות זו:
+  <p>ATLAS מפורסמת על ידי Bar Revah. שאלות על מדיניות זו וכל בקשה לגבי הנתונים:
   <a href="mailto:spacebar.post@gmail.com">spacebar.post@gmail.com</a>.</p>
 
-  <h2>מה ATLAS שומר על המכשיר</h2>
-  <p>כל מה שנרשם או נוצר באפליקציה נכתב למסד נתונים בתוך אחסון האפליקציה על הטלפון. כולל:</p>
+  <h2>החשבון</h2>
+  <p>בהתחברות עם Apple או Google מתקבלים אצלנו מזהה אצל אותו ספק, כתובת אימייל (אצל Apple זו יכולה להיות כתובת
+  ממסר פרטית שמעבירה את הדואר הלאה) ושם, אם נבחר לשתף אותו. השרת שומר גם:</p>
   <ul>
-    <li>הפרופיל: שם, גיל, משקל גוף, דופק מרבי, שפה ויחידות מידה, יעד שבועי, שעת ומקום אימון רגילים וציוד זמין.</li>
-    <li>שגרות האימון, התרגילים, וכל תרגיל שנוצר באופן עצמאי.</li>
-    <li>כל אימון: סטים, משקלים, חזרות, זמנים, הערות, משך ותאריך.</li>
-    <li>דגימות דופק שנרשמו במהלך אימון, שיאים אישיים, הישגים ונתוני התקדמות.</li>
+    <li>שפה, העולם שבשימוש (חדר כושר או כדורגל), פלטפורמה וגרסת אפליקציה, ומועד הפתיחה האחרון;</li>
+    <li>שנת לידה, אם הוזנה, כדי שכללי האימון יתאימו לגיל;</li>
+    <li>מצב המנוי כפי שה־App Store מדווח, גישת Pro שניתנה על ידינו, וקודים שמומשו.</li>
+  </ul>
+  <p>השרת פועל ב־Vercel ומסד הנתונים ב־Neon בפרנקפורט, גרמניה. רק המפרסם יכול לצפות בחשבונות, דרך עמוד ניהול
+  פרטי שרושם כל פעולה.</p>
+
+  <h2>מה נשאר על המכשיר</h2>
+  <p>כל מה שמתאמנים ורושמים נכתב למסד נתונים בתוך אחסון האפליקציה על הטלפון ואינו מועלה לשרת שלנו:</p>
+  <ul>
+    <li>פרטי הפרופיל: משקל גוף, דופק מרבי, יחידות מידה, יעד שבועי, שעת ומקום אימון רגילים וציוד.</li>
+    <li>תוכניות, שגרות ותרגילים, כולל כאלה שנוצרו באופן עצמאי.</li>
+    <li>כל אימון: סטים, משקלים, חזרות, זמנים, הערות, משך ותאריך, בשני העולמות.</li>
+    <li>צ'ק־אינים בכדורגל, התחושה אחרי אימון, המסע, והחברים וההזמנות שנשמרים באפליקציה.</li>
+    <li>דגימות דופק, שיאים אישיים, הישגים ונתוני התקדמות.</li>
     <li>ההגדרות, כולל שעות התזכורות וחלון השקט.</li>
   </ul>
-  <p>שום פריט מהרשימה אינו נשלח אלינו. אין לנו גישה אליו.</p>
+  <p>שיתוף כרטיס או הזמנה נשלח רק לאן שנבחר לשלוח אותו.</p>
 
   <h2>Apple Health</h2>
-  <p>באישור מפורש, ATLAS <strong>קורא</strong> מ־Apple Health דופק, דופק במנוחה, שונוּת דופק
-  ואנרגיה פעילה — רק כדי להציג כמה קשה היה האימון — ו<strong>כותב</strong> את האימונים שהושלמו
-  בחזרה כאימוני כוח, כדי שייספרו בטבעות.</p>
-  <p>נתוני בריאות שנקראים מ־Apple Health נשארים על המכשיר ואינם נשלחים לשום מקום. איננו משתמשים
-  בהם לפרסום או לשיווק ואיננו משתפים אותם. אפשר לבטל את הגישה בכל רגע בהגדרות iOS, תחת
-  פרטיות ואבטחה ← בריאות ← ATLAS.</p>
+  <p>באישור מפורש, ATLAS <strong>קורא</strong> מ־Apple Health דופק, דופק במנוחה, שונוּת דופק ואנרגיה פעילה — רק כדי
+  להציג כמה קשה היה האימון — ו<strong>כותב</strong> את האימונים שהושלמו בחזרה כאימוני כוח, כדי שייספרו בטבעות.</p>
+  <p>נתוני בריאות אינם יוצאים מהמכשיר: הם לא נשלחים לשרת שלנו, אינם חלק מהאנליטיקה, ומספרי הדופק מוסתרים
+  בהקלטות המסך. איננו משתמשים בהם לפרסום או לשיווק ואיננו משתפים אותם. אפשר לבטל את הגישה בכל רגע בהגדרות iOS,
+  תחת פרטיות ואבטחה ← בריאות ← ATLAS.</p>
 
-  <h2>רצועות דופק ושעונים</h2>
-  <p>ATLAS מתחבר ב־Bluetooth לרצועות דופק ולשעונים המשדרים דופק. החיבור ישיר בין המכשיר לטלפון.
-  הרשאת מיקום ב־Android מתבקשת רק משום ש־Android דורש אותה לסריקת מכשירי Bluetooth; ATLAS
-  אינו אוסף ואינו משתמש במיקום.</p>
-
-  <h2>תמונות</h2>
-  <p>ATLAS יכול לשמור כרטיס שיתוף לספריית התמונות לפי בקשה. ההרשאה המבוקשת היא הוספה בלבד,
-  ואין קריאה של תמונות קיימות.</p>
-
-  <h2>התראות</h2>
-  <p>התזכורות מתוזמנות על המכשיר על ידי iOS. אין שרת התראות, ולכן שום תוכן של התראה אינו יוצא מהטלפון.</p>
-
-  <h2>מה כן יוצא מהמכשיר</h2>
-  <p>שלושה דברים, ואף אחד מהם אינו נושא נתוני אימון או בריאות:</p>
+  <h2>אנליטיקה והקלטות מסך</h2>
+  <p>ATLAS משתמש ב־<a href="https://posthog.com/privacy">PostHog</a>, המאוחסן באיחוד האירופי, כדי להבין איך
+  משתמשים באפליקציה. הוא מקבל:</p>
   <ul>
-    <li><strong>מנויים.</strong> הרכישה מתבצעת מול Apple. אנחנו משתמשים ב־RevenueCat כדי לדעת אם
-      מנוי פעיל; הוא מקבל את עסקת ה־App Store ומזהה אנונימי שנוצר באפליקציה. הוא אינו מקבל שם,
-      אימונים או נתוני בריאות.</li>
-    <li><strong>עדכוני אפליקציה.</strong> האפליקציה בודקת מול שירות העדכונים של Expo אם קיימת גרסת
-      קוד חדשה. הבקשה נושאת את גרסת האפליקציה והפלטפורמה, לא נתונים אישיים.</li>
-    <li><strong>שום דבר נוסף.</strong> האפליקציה אינה מבצעת בקשות רשת אחרות.</li>
+    <li>אירועים כמו סיום ההיכרות, התחלה או סיום של אימון (עם משכו ומספר הסטים), פתיחת מסך המנוי או מימוש קוד,
+      ואילו מסכים נפתחו;</li>
+    <li>מזהה החשבון, שפה, עולם, טווח גילאים (אף פעם לא תאריך לידה), פלטפורמה, גרסת אפליקציה והאם יש Pro;</li>
+    <li>הקלטות של המסכים בזמן השימוש, כדי לראות איפה משהו לא ברור. טקסט מוקלד, מספרי דופק ותמונות בכרטיסי שיתוף
+      מוסתרים בהקלטות האלה.</li>
+  </ul>
+  <p>שם, כתובת אימייל, הערות וכל דבר שנכתב אינם נשלחים לעולם כאנליטיקה.</p>
+
+  <h2>דיווחי קריסה</h2>
+  <p>כשהאפליקציה קורסת או נתקלת בשגיאה, <a href="https://sentry.io/privacy/">Sentry</a>, המאוחסן באיחוד האירופי,
+  מקבל פרטים טכניים: השגיאה, דגם המכשיר וגרסת המערכת, גרסת האפליקציה, המסכים והצעדים שהובילו אליה, ומזהה החשבון.
+  הוא אינו מקבל שם או כתובת אימייל.</p>
+
+  <h2>מנויים</h2>
+  <p>הרכישות מתבצעות מול Apple. אנחנו משתמשים ב־<a href="https://www.revenuecat.com/privacy">RevenueCat</a> כדי
+  לדעת אם מנוי פעיל: הוא מקבל את עסקת ה־App Store ואת מזהה החשבון, ומעדכן את השרת שלנו במצב המנוי. הוא אינו מקבל
+  אימונים או נתוני בריאות. ראו גם את <a href="https://www.apple.com/legal/privacy/">מדיניות הפרטיות של Apple</a>.</p>
+
+  <h2>דברים נוספים שיוצאים מהמכשיר</h2>
+  <ul>
+    <li><strong>עדכוני אפליקציה.</strong> האפליקציה בודקת מול שירות העדכונים של Expo אם קיימת גרסת קוד חדשה.
+      הבקשה נושאת את גרסת האפליקציה והפלטפורמה, לא נתונים אישיים.</li>
+    <li><strong>רצועות דופק ושעונים.</strong> החיבור ב־Bluetooth ישיר בין המכשיר לטלפון. הרשאת מיקום ב־Android
+      מתבקשת רק משום ש־Android דורש אותה לסריקת מכשירי Bluetooth; ATLAS אינו אוסף ואינו משתמש במיקום.</li>
+    <li><strong>תמונות.</strong> ATLAS יכול לשמור כרטיס שיתוף לספריית התמונות לפי בקשה. ההרשאה היא הוספה בלבד,
+      ואין קריאה של תמונות קיימות.</li>
+    <li><strong>התראות.</strong> התזכורות מתוזמנות על המכשיר. אין שרת התראות.</li>
   </ul>
 
   <h2>מה איננו עושים</h2>
   <ul>
     <li>איננו מוכרים או משכירים נתונים.</li>
-    <li>איננו עוקבים אחר המשתמש באפליקציות או באתרים אחרים, ואין באפליקציה פרסומות.</li>
+    <li>אין פרסומות ואין מעקב באפליקציות או באתרים אחרים.</li>
     <li>איננו משתמשים בנתוני בריאות לשיווק ואיננו משתפים אותם עם איש.</li>
   </ul>
 
   <h2>מחיקת הנתונים</h2>
-  <p>הגדרות ← מחיקת כל הנתונים מוחקת את כל מה ש־ATLAS שמר. מחיקת האפליקציה מהטלפון מסירה אותו גם כן.
-  אימונים שכבר נכתבו ל־Apple Health שייכים ל־Health, ומחיקתם נעשית משם — באפליקציית Health או
-  בביטול הגישה של ATLAS.</p>
+  <p>אני ← חשבון ← מחיקת החשבון מסירה את החשבון, את גישת ה־Pro ואת רשומת המנוי מהשרת שלנו ומ־RevenueCat.
+  הגדרות ← מחיקת כל הנתונים מוחקת את כל מה ש־ATLAS שומר על הטלפון, וגם מחיקת האפליקציה מסירה אותו. למחיקה גם של
+  רשומות האנליטיקה והקריסות הקשורות לחשבון, אפשר לכתוב אלינו ונטפל בזה. אימונים שכבר נכתבו ל־Apple Health שייכים
+  ל־Health ונמחקים משם.</p>
 
-  <h2>ילדים</h2>
-  <p>ATLAS אינה מיועדת לילדים מתחת לגיל 13, ואיננו אוספים ביודעין נתונים מהם.</p>
+  <h2>צעירים</h2>
+  <p>ב־ATLAS משתמשים גם בני נוער וגם מבוגרים, וכולם מטופלים כפי שמתואר במדיניות זו, בכל גיל. מתחת לגיל 13, או מתחת
+  לגיל שנקבע במדינת המגורים להסכמה לשירותים מקוונים, יש להשתמש ב־ATLAS רק באישור הורה או אפוטרופוס. הורה או
+  אפוטרופוס יכולים לבקש מאיתנו בכל עת לראות או למחוק את החשבון של הילד או הילדה.</p>
 
   <h2>זכויות</h2>
-  <p>מאחר שהנתונים אינם מגיעים אלינו, אין אצלנו מה לייצא, לתקן או למחוק. הכול נמצא על המכשיר.
-  לשאלות: <a href="mailto:spacebar.post@gmail.com">spacebar.post@gmail.com</a>.</p>
+  <p>אפשר לבקש לראות, לתקן, לייצא או למחוק את הנתונים שאנחנו מחזיקים, או להתנגד לאופן השימוש בהם, בכתיבה אל
+  <a href="mailto:spacebar.post@gmail.com">spacebar.post@gmail.com</a>. התשובה תגיע תוך 30 יום.</p>
 
   <h2>שינויים</h2>
   <p>אם המדיניות תשתנה נעדכן את התאריך בראש העמוד, ובשינוי מהותי גם נאמר זאת באפליקציה.</p>
