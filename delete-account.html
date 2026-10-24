@@ -1,0 +1,178 @@
+<!doctype html>
+<!--
+  ATLAS — deleting an account (Google Play's account-deletion policy, store audit B15: an in-app path and a web page
+  that lists the steps and takes requests without the app). The URL goes into Play Console → Data safety → Data
+  deletion. The facts are the privacy policy's "Deleting your data" section, from the code (2026-10-24):
+  Me → Account → Delete account → accountActions.deleteAccount (src/features/account/actions.ts) → DELETE /api/v1/me →
+  deleteAccount (cloud/src/lib/account.ts): the user row with its grants, refresh tokens and Apple token; redemptions
+  kept with user_id = null; the RevenueCat events we recorded; admin notes stripped from the audit log; then the
+  PostHog person (POSTHOG_PERSONAL_API_KEY is set). The RevenueCat subscriber delete and the Apple token revocation are
+  off on the server (REVENUECAT_V1_SECRET_KEY and APPLE_SIWA_* unset), so this page does not promise them. A request by
+  email is carried out from the admin panel (cloud/src/lib/admin/service.ts), which runs the same deletion.
+  The app name is the App Store title (store.config.json); it must match the Google Play listing too, so change
+  "ATLAS Coach" / "ATLAS מאמן" here if the Play title differs.
+  NOT reviewed by a lawyer. Published by Bar Revah; contact spacebar.post@gmail.com.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ATLAS — Delete your account</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  :root{--ink:#0F0E0C;--bg1:#161412;--line:rgba(255,250,240,.10);--ember:#FF5A2E;--tx:#F4EFE6;--tx2:#B9B1A4;--tx3:#8C8478}
+  body{margin:0;background:var(--ink);color:var(--tx);font-family:'Rubik',system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:56px 24px 96px}
+  .nav{font-size:13px;color:var(--tx3);letter-spacing:.06em;text-transform:uppercase;margin:0 0 40px}
+  .nav a{color:var(--ember);text-decoration:none}
+  .nav a:hover{text-decoration:underline}
+  h1{font-size:34px;line-height:1.2;font-weight:600;margin:0 0 6px;letter-spacing:-.01em}
+  .date{color:var(--tx3);font-size:14px;margin:0 0 36px}
+  h2{font-size:19px;font-weight:600;margin:40px 0 10px;line-height:1.35}
+  p,li{color:var(--tx2);margin:0 0 14px}
+  strong{color:var(--tx);font-weight:500}
+  ul,ol{padding-inline-start:22px;margin:0 0 18px}
+  li{margin:0 0 8px}
+  a{color:var(--ember)}
+  .lead{background:var(--bg1);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:0 0 8px}
+  .lead p{margin:0;color:var(--tx)}
+  hr{border:0;border-top:1px solid var(--line);margin:64px 0 48px}
+  section[dir="rtl"]{text-align:right}
+  footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);color:var(--tx3);font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p class="nav"><a href="#he">עברית ↓</a></p>
+
+<section id="en" lang="en" dir="ltr">
+  <h1>Delete your ATLAS account</h1>
+  <p class="date">The ATLAS Coach app by Bar Revah · last updated 24 October 2026</p>
+
+  <div class="lead">
+    <p>An ATLAS account is optional. If you never signed in, there is no account on our server: everything ATLAS keeps
+    is on your phone, and Me → Data → Delete all data, or deleting the app, erases it.</p>
+  </div>
+
+  <h2>In the app</h2>
+  <ol>
+    <li>Open ATLAS and go to <strong>Me</strong>.</li>
+    <li>Under <strong>Account</strong>, tap <strong>Delete account</strong>.</li>
+    <li>Confirm with <strong>Delete account</strong>.</li>
+  </ol>
+  <p>ATLAS deletes the account on our server first. If our server cannot be reached, nothing is deleted and the app
+  says so. Then everything on the phone is erased, as with Delete all data, and the app starts again from the
+  beginning.</p>
+
+  <h2>Without the app</h2>
+  <p>Write to <a href="mailto:spacebar.post@gmail.com?subject=Delete%20my%20ATLAS%20account">spacebar.post@gmail.com</a>
+  with the subject "Delete my ATLAS account", from the email address your account uses, and say whether you signed in
+  with Apple or Google. If you signed in with Apple and chose Hide My Email, give that address: Apple lists it in your
+  Apple Account's Sign in with Apple settings. We may reply to that address to confirm the request. We delete the
+  account the same way the app does, and confirm by email within 30 days. This deletes the account on our server; the
+  data on a phone is erased when you delete the app.</p>
+
+  <h2>Before you delete: your subscription</h2>
+  <p>Deleting an account does not cancel a store subscription. Cancel it first in your App Store or Google Play
+  subscriptions: on iPhone in Settings → your name → Subscriptions, on Android in Google Play → Payments and
+  subscriptions → Subscriptions.</p>
+
+  <h2>What is deleted</h2>
+  <ul>
+    <li>Your name, email address and identifier at Apple or Google.</li>
+    <li>Your language, the world you use, the app version and platform, your year of birth, and when the account was
+      created and last used.</li>
+    <li>Your subscription status as the store reported it, any Pro we gave you (including Pro from an ATLAS code),
+      your sign-in sessions and the subscription events we recorded.</li>
+    <li>The usage data in PostHog linked to your account.</li>
+    <li>When you delete in the app, everything on the phone too: your profile, plan, workouts, check-ins, the health
+      figures ATLAS read, and your friends.</li>
+  </ul>
+
+  <h2>What is kept, and for how long</h2>
+  <ul>
+    <li><strong>Codes you redeemed</strong> stay counted, so a code's number of uses stays right, but they are no
+      longer linked to you.</li>
+    <li><strong>Records of what our team did on the account</strong> keep only the action and the account's random
+      identifier; any note our team wrote is removed.</li>
+    <li><strong>Database backups:</strong> deleted rows leave them within a day.</li>
+    <li><strong>Crash reports in Sentry</strong> carry no name or email, at most the account's random identifier, and
+      are deleted automatically after at most 90 days.</li>
+    <li><strong>RevenueCat</strong> keeps its record of your purchases under your account identifier. Write to us and
+      we will have it deleted there.</li>
+    <li><strong>Apple and Google</strong> keep their purchase records as their own policies set out. ATLAS may still be
+      listed among the apps that use your Sign in with Apple or Google account, and you can remove it there.</li>
+  </ul>
+
+  <p>More in the <a href="privacy-policy.html">Privacy Policy</a>. Questions:
+  <a href="mailto:spacebar.post@gmail.com">spacebar.post@gmail.com</a>.</p>
+</section>
+
+<hr>
+
+<section id="he" lang="he" dir="rtl">
+  <h1>מחיקת חשבון ATLAS</h1>
+  <p class="date">האפליקציה ATLAS מאמן של Bar Revah · עודכן לאחרונה ב־24 באוקטובר 2026</p>
+
+  <div class="lead">
+    <p>חשבון ATLAS הוא רשות. בלי התחברות אין חשבון בשרת שלנו: כל מה ש־ATLAS שומרת נמצא בטלפון, וכדי למחוק אותו
+    אפשר לבחור בלשונית אני ← נתונים ← מחיקת כל הנתונים, או למחוק את האפליקציה.</p>
+  </div>
+
+  <h2>באפליקציה</h2>
+  <ol>
+    <li>לפתוח את ATLAS ולעבור ללשונית <strong>אני</strong>.</li>
+    <li>תחת <strong>חשבון</strong>, להקיש על <strong>מחיקת החשבון</strong>.</li>
+    <li>לאשר בכפתור <strong>למחוק את החשבון</strong>.</li>
+  </ol>
+  <p>ATLAS מוחקת קודם את החשבון בשרת שלנו. אם אין חיבור לשרת, שום דבר לא נמחק והאפליקציה אומרת זאת. אחר כך כל מה
+  שבטלפון נמחק, כמו במחיקת כל הנתונים, והאפליקציה מתחילה מההתחלה.</p>
+
+  <h2>בלי האפליקציה</h2>
+  <p>אפשר לכתוב אל
+  <a href="mailto:spacebar.post@gmail.com?subject=Delete%20my%20ATLAS%20account">spacebar.post@gmail.com</a> בנושא
+  ‏"Delete my ATLAS account", מכתובת האימייל של החשבון, ולציין אם ההתחברות הייתה עם Apple או עם Google. בהתחברות עם
+  Apple שבה נבחרה האפשרות Hide My Email, יש לציין את הכתובת הזאת: Apple מציגה אותה בהגדרות Sign in with Apple של
+  חשבון ה־Apple. ייתכן שנשיב לכתובת הזאת כדי לאשר את הבקשה. אנחנו מוחקים את החשבון באותה דרך שבה האפליקציה מוחקת
+  אותו, ומאשרים באימייל תוך 30 יום. כך נמחק החשבון בשרת שלנו; הנתונים בטלפון נמחקים במחיקת האפליקציה.</p>
+
+  <h2>לפני המחיקה: המינוי</h2>
+  <p>מחיקת החשבון לא מבטלת מינוי מהחנות. כדאי לבטל אותו קודם בחנות: ב־iPhone בהגדרות ← השם בראש המסך ← מינויים,
+  וב־Android באפליקציית Google Play ← תשלומים ומינויים ← מינויים.</p>
+
+  <h2>מה נמחק</h2>
+  <ul>
+    <li>שם, כתובת אימייל ומזהה אצל Apple או Google.</li>
+    <li>שפה, העולם שבשימוש, גרסת האפליקציה והפלטפורמה, שנת לידה, ומתי החשבון נפתח ומתי היה בשימוש לאחרונה.</li>
+    <li>מצב המינוי כפי שהחנות דיווחה, גישת Pro שניתנה על ידינו (כולל Pro מקוד ATLAS), החיבורים הפעילים לחשבון ואירועי
+      המינוי שנרשמו.</li>
+    <li>נתוני השימוש ב־PostHog שקשורים לחשבון.</li>
+    <li>במחיקה מהאפליקציה, גם כל מה שבטלפון: הפרופיל, התוכנית, האימונים, הצ'ק־אין, נתוני הבריאות ש־ATLAS קראה
+      והחברים.</li>
+  </ul>
+
+  <h2>מה נשמר, ולכמה זמן</h2>
+  <ul>
+    <li><strong>קודים שמומשו</strong> נשארים בספירה, כדי שמספר המימושים של קוד יישאר נכון, אבל כבר לא קשורים
+      לחשבון.</li>
+    <li><strong>רישומי הפעולות של הצוות שלנו בחשבון</strong> שומרים רק את הפעולה ואת המזהה האקראי של החשבון; הערות
+      שהצוות כתב נמחקות.</li>
+    <li><strong>גיבויי מסד הנתונים:</strong> שורות שנמחקו יוצאות מהם תוך יום.</li>
+    <li><strong>דוחות קריסה ב־Sentry</strong> לא נושאים שם או אימייל, לכל היותר את המזהה האקראי של החשבון, והם נמחקים
+      אוטומטית אחרי 90 יום לכל היותר.</li>
+    <li><strong>‏RevenueCat</strong> שומר את רשומת הרכישות לפי מזהה החשבון. אפשר לכתוב אלינו ונדאג שתימחק גם שם.</li>
+    <li><strong>‏Apple ו־Google</strong> שומרות את רשומות הרכישה לפי המדיניות שלהן. ייתכן ש־ATLAS עדיין תופיע ברשימת
+      האפליקציות שמשתמשות בהתחברות עם Apple או עם Google, ואפשר להסיר אותה שם.</li>
+  </ul>
+
+  <p>עוד פרטים ב<a href="privacy-policy.html">מדיניות הפרטיות</a>. שאלות:
+  <a href="mailto:spacebar.post@gmail.com">spacebar.post@gmail.com</a>.</p>
+</section>
+
+<footer>ATLAS · Bar Revah · <a href="mailto:spacebar.post@gmail.com">spacebar.post@gmail.com</a></footer>
+
+</div>
+</body>
+</html>

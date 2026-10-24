@@ -1,7 +1,15 @@
 <!doctype html>
 <!--
   ATLAS — terms of use.
-  Apple guideline 3.1.2 requires a working terms link on any auto-renewing subscription.
+  Written from what the app does today (2026-10-24, app 1.3.0): two worlds, one active at a time (ADR-018/026), the
+  Football world ungated (ADR-004, fourth amendment). Sign-in with Apple (iPhone) or Google is optional and adds Pro and
+  gifts on every phone, never training-data sync (ADR-029, ADR-032 D3). Pro is one auto-renewing subscription, monthly
+  or yearly, through the App Store or Google Play (RevenueCat); the only free trial is the store's 7-day introductory
+  offer (D6). ATLAS codes exist on Android only and need an account; iPhone has App Store offer codes only (D5). On
+  Android under 18 the paywall shows no price, only the ATLAS code (src/features/paywall/audience.ts). Public store
+  builds are for ages 13 and over (D2, EXPO_PUBLIC_MIN_AGE).
+  Apple guideline 3.1.2 requires a working terms link on any auto-renewing subscription. The same URL is
+  LEGAL_URLS.terms (src/features/paywall/constants.ts), linked from the paywall and from Me → About and privacy.
   NOT reviewed by a lawyer — have one read it before the app goes on sale publicly.
   Published by Bar Revah; contact spacebar.post@gmail.com.
   Governing law is Israel throughout; change it if the entity is registered elsewhere.
@@ -14,7 +22,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap">
 <style>
   *,*::before,*::after{box-sizing:border-box}
-  :root{--ink:#0F0E0C;--bg1:#161412;--line:rgba(255,250,240,.10);--ember:#FF5A2E;--sand:#E5C07B;--tx:#F4EFE6;--tx2:#B9B1A4;--tx3:#7E766B}
+  :root{--ink:#0F0E0C;--bg1:#161412;--line:rgba(255,250,240,.10);--ember:#FF5A2E;--sand:#E5C07B;--tx:#F4EFE6;--tx2:#B9B1A4;--tx3:#8C8478}
   body{margin:0;background:var(--ink);color:var(--tx);font-family:'Rubik',system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
   .wrap{max-width:720px;margin:0 auto;padding:56px 24px 96px}
   .nav{font-size:13px;color:var(--tx3);letter-spacing:.06em;text-transform:uppercase;margin:0 0 40px}
@@ -42,85 +50,147 @@
 
 <section id="en" lang="en" dir="ltr">
   <h1>ATLAS Terms of Use</h1>
-  <p class="date">Last updated 6 September 2026</p>
+  <p class="date">Last updated 24 October 2026</p>
 
   <div class="warn">
-    <p><strong>ATLAS is not medical advice.</strong> It is a training log. Talk to a doctor before
-    starting or changing a training programme, and stop if something hurts.</p>
+    <p><strong>ATLAS is not a medical device and not medical advice.</strong> It plans and records training. It does
+    not diagnose, treat or prevent any condition. Talk to a doctor before starting or changing your training, and stop
+    if something hurts.</p>
   </div>
 
   <h2>1. Agreement</h2>
-  <p>These terms are between you and Bar Revah ("we", "us"), the publisher of the ATLAS
-  mobile app. Installing or using ATLAS means you accept them. If you do not, do not use the app.</p>
+  <p>These terms are between you and Bar Revah ("we", "us"), the publisher of the ATLAS app (ATLAS Coach on the App
+  Store). Installing or using ATLAS means you accept them. If you do not, do not use the app. The
+  <a href="privacy-policy.html">Privacy Policy</a> explains what happens to your data. Downloads and purchases also
+  follow the rules of the store you use, the App Store or Google Play.</p>
 
-  <h2>2. What ATLAS is</h2>
-  <p>ATLAS records the training you do: routines, sessions, sets, heart rate and progress. Any
-  suggestion it makes — a weight to try next, a muscle you have not worked this week — is derived
-  from what you logged. It is information, not instruction, and not a substitute for a coach or a
-  clinician.</p>
+  <h2>2. Who can use ATLAS</h2>
+  <p>ATLAS on the App Store and Google Play is for people aged 13 and over. Before you start, the app asks for your
+  birth month and year. If you are under 18, you need the permission of a parent or guardian to buy a subscription. On
+  iPhone, when Ask to Buy is on in Family Sharing, the purchase goes to them for approval first. On Android, ATLAS
+  shows no prices to anyone under 18, and Pro there comes only with an ATLAS code (section 8).</p>
 
-  <h2>3. Health and safety</h2>
-  <p>Strength training carries risk of injury. You are responsible for how you train and for
-  deciding what is safe for you. Heart-rate figures shown by ATLAS come from your device or a
-  connected strap and are not a medical measurement; do not rely on them to make a health decision.
-  If you feel unwell, stop and seek medical help.</p>
-
-  <h2>4. Your licence</h2>
-  <p>We grant you a personal, non-exclusive, non-transferable licence to use ATLAS on devices you
-  own or control, under the App Store's own terms. You may not copy, resell, reverse-engineer or
-  redistribute the app, and you may not use it to build a competing product.</p>
-
-  <h2>5. Your data and your content</h2>
-  <p>Your training data stays on your device — see the
-  <a href="privacy-policy.html">Privacy Policy</a>. Routines, notes and custom exercises you create
-  are yours. Because we do not hold a copy, we cannot restore them if you delete the app or lose
-  the device; back up your phone if that matters to you.</p>
-
-  <h2>6. Subscriptions</h2>
+  <h2>3. What ATLAS is</h2>
+  <p>ATLAS has two worlds, and one is active at a time:</p>
   <ul>
-    <li>ATLAS is free to use with some features reserved for <strong>ATLAS Pro</strong>, offered as a
-      monthly or yearly auto-renewing subscription.</li>
-    <li>New subscribers get a <strong>7-day free trial</strong>. Payment is charged to your Apple
-      account when the trial ends unless you cancel at least 24 hours before it does.</li>
-    <li>The subscription renews automatically for the same period at the same price unless you turn
-      off auto-renew at least 24 hours before the current period ends.</li>
-    <li>The price shown on the paywall is the price you pay, in your local currency, including any
-      tax Apple collects.</li>
-    <li>Manage or cancel at any time in the App Store: your name → Subscriptions. Deleting the app
-      does not cancel a subscription.</li>
-    <li>Refunds are handled by Apple under its own policy; we cannot issue them. Any unused part of
-      a free trial is forfeited when you buy a subscription.</li>
+    <li><strong>ATLAS Gym</strong> builds a strength-training plan from your answers, shows each day's workout with the
+      weight and repetitions to aim for, and records every set.</li>
+    <li><strong>ATLAS Football</strong> plans athletic training (speed, agility, power, strength, fitness and short ball
+      work) around your team's training and matches, and lets you add friends with a code or a link.</li>
+  </ul>
+  <p>You can join either world or both, and switch between them in Me → My worlds. Everything ATLAS suggests, such as
+  a weight to try next, an easier session or a day off, comes from your answers and what you logged. It is
+  information, not instruction, and no substitute for a coach or a clinician.</p>
+
+  <h2>4. Health and safety</h2>
+  <p>Training carries a risk of injury. You are responsible for how you train and for deciding what is safe for you.
+  When you report pain or illness, ATLAS eases or holds the session and may suggest rest or professional advice. This
+  is general guidance, not a diagnosis, and it does not replace one. Heart rate, heart-rate variability, sleep, VO2 max
+  and other figures come from your phone, a watch, a strap, Apple Health or Health Connect. They are not medical
+  measurements, so do not rely on them for a health decision. If you feel unwell, stop and get medical help.</p>
+
+  <h2>5. Your account (optional)</h2>
+  <p>Everything in ATLAS works without an account. You can sign in with Apple on iPhone, or with Google. An account
+  keeps Pro, gifts and ATLAS codes with you on every phone you sign in on, and lets us help you when you write to us.
+  It does not copy or back up your workouts. ATLAS does not offer an account to anyone it knows is under 13.</p>
+  <ul>
+    <li>Whoever can sign in to your Apple or Google account can use your ATLAS account, so keep that account
+      secure.</li>
+    <li>You can sign out at any time. Your workouts stay on the phone and ATLAS keeps working.</li>
+    <li>You can delete your account at any time in Me → Account → Delete account, or by email without the app: see
+      <a href="delete-account.html">Delete your ATLAS account</a>. Pro we gave you, or that came from an ATLAS code,
+      ends with the account and cannot be brought back. Deleting the account does not cancel a store
+      subscription.</li>
   </ul>
 
-  <h2>7. Changes to the app and to these terms</h2>
-  <p>We may add, change or remove features, and may update these terms. If a change is material we
-  will say so in the app and update the date above. Continuing to use ATLAS after that means you
-  accept the new terms. If a change to a paid feature is one you do not accept, cancel the
-  subscription.</p>
+  <h2>6. Your data and your content</h2>
+  <p>Your training data stays on your phone. It is not uploaded to our server, even when you have an account (see the
+  <a href="privacy-policy.html">Privacy Policy</a>). Workouts, notes and anything else you create in ATLAS are yours.
+  Because we do not hold a copy, we cannot restore them if you delete the app, delete all data or lose the phone.
+  Me → Data → Export my data gives you all of it as a file, and your phone's own backup can include it.</p>
 
-  <h2>8. Ending your use</h2>
-  <p>You may stop at any time by deleting the app. We may suspend access if the app is used
-  unlawfully or in a way that damages the service or other people.</p>
+  <h2>7. ATLAS Pro</h2>
+  <ul>
+    <li>ATLAS is free to use. In the Gym world, some features are reserved for <strong>ATLAS Pro</strong>, and the Pro
+      screen lists them. The Football world is entirely free at this time.</li>
+    <li>Pro is an auto-renewing subscription, monthly or yearly. It is bought through the App Store on iPhone or Google
+      Play on Android, and charged to that store account. The price on the Pro screen is the price you pay, in your
+      local currency, including any tax the store collects.</li>
+    <li><strong>Free trial.</strong> The only free trial is the store's 7-day introductory offer, when the store finds
+      you eligible (usually on a first subscription); the button on the Pro screen then says so. Payment is charged
+      when the trial ends unless you cancel: on the App Store at least 24 hours before it ends, on Google Play before it
+      ends. Any unused part of a free trial ends when you buy a subscription.</li>
+    <li><strong>Renewal.</strong> The subscription renews automatically for the same period unless you cancel: on the
+      App Store at least 24 hours before the current period ends, on Google Play before it ends. If the price changes,
+      the store tells you first and, where its rules require, asks for your agreement.</li>
+    <li><strong>Managing and cancelling.</strong> On iPhone, go to Settings → your name → Subscriptions. On Android,
+      go to Google Play → Payments and subscriptions → Subscriptions. In ATLAS, Me → Subscription → Manage subscription
+      opens the same page. After you cancel, Pro stays until the end of the period you paid for. Deleting the app or
+      your account does not cancel a subscription.</li>
+    <li><strong>Restore purchases</strong> (on the Pro screen and in Me → Subscription) brings back a subscription
+      bought with the same Apple or Google account, for example on a new phone or after reinstalling ATLAS.</li>
+    <li><strong>Refunds.</strong> On the App Store, refunds are Apple's decision under its own policy, and we cannot
+      issue them. On Google Play, refunds follow Google Play's policy: you can ask Google Play, or write to us.</li>
+  </ul>
 
-  <h2>9. No warranty</h2>
-  <p>ATLAS is provided "as is". We do not promise it will be free of faults or available without
-  interruption, and we do not warrant that anything it calculates is accurate for your purposes.</p>
+  <h2>8. Codes and gifts</h2>
+  <ul>
+    <li><strong>On iPhone</strong>, codes are App Store offer codes. You redeem them in Apple's own sheet (Redeem a
+      code, on the Pro screen or in Me), and Apple's terms apply. There are no ATLAS codes on iPhone.</li>
+    <li><strong>On Android</strong>, a Google Play code is redeemed on Google Play's own page. An ATLAS code is typed
+      into ATLAS (Me → Account → Redeem an ATLAS code), needs an account and is checked by our server. It gives Pro for
+      the number of days the app shows when you redeem it, or for life. It never renews and never charges you.</li>
+    <li>A store code can start a subscription that renews at the normal price when the offer ends. The store says so
+      when you redeem it, and you cancel it in the store like any other subscription.</li>
+    <li><strong>Gifts.</strong> We may give an account Pro for a number of days or for life. The app shows it as a
+      gift, with its end date. It never renews and is never charged.</li>
+    <li>ATLAS codes and gifts are free. They have no cash value and cannot be sold or exchanged for money. Each code can
+      be redeemed once per account, and a code can expire or run out of uses. We may cancel a code or a gift that was
+      obtained unfairly (for example by guessing codes) or given by mistake. Pro from a code or a gift belongs to your
+      account and ends if the account is deleted.</li>
+  </ul>
 
-  <h2>10. Limitation of liability</h2>
-  <p>To the extent the law allows, we are not liable for indirect or consequential loss, for lost
-  data, or for injury arising from how you train. Nothing here limits liability that cannot be
-  limited by law. Where liability cannot be excluded, it is capped at what you paid for ATLAS in the
-  twelve months before the claim.</p>
+  <h2>9. Friends and sharing</h2>
+  <p>Share cards, friend cards, invites and exported files go only where you send them, and you are responsible for
+  what you share. In the Football world, a friend card shows only sessions per week and the week streak. The name on
+  your card must not pretend to be someone else or offend anyone.</p>
 
-  <h2>11. Apple</h2>
-  <p>Apple is not a party to these terms and has no obligation to support ATLAS. Apple is, however,
-  a third-party beneficiary of them and may enforce them against you.</p>
+  <h2>10. Your licence</h2>
+  <p>We grant you a personal, non-exclusive, non-transferable licence to use ATLAS on devices you own or control,
+  under the App Store's usage rules or Google Play's terms. You may not copy, resell, reverse-engineer (except where the
+  law allows it) or redistribute the app, or use it to build a competing product. You may not misuse our server, for
+  example by guessing codes or by automated access.</p>
 
-  <h2>12. Governing law</h2>
-  <p>These terms are governed by the laws of Israel, and its courts have exclusive
-  jurisdiction, without prejudice to consumer rights you have where you live.</p>
+  <h2>11. Changes to the app and to these terms</h2>
+  <p>We may add, change or remove features, and may update these terms. Updates come through the App Store and Google
+  Play, and smaller fixes can also arrive inside the app when it opens. If a change to these terms is material, we will
+  say so in the app and update the date above. Continuing to use ATLAS after that means you accept the new terms. If
+  you do not accept a change to a paid feature, cancel the subscription.</p>
 
-  <h2>13. Contact</h2>
+  <h2>12. Ending your use</h2>
+  <p>You can stop at any time: delete the app and, if you have one, your account. We may suspend or close an account,
+  or end Pro we gave, if ATLAS is used unlawfully, to abuse codes, or in a way that harms the service or other
+  people.</p>
+
+  <h2>13. No warranty</h2>
+  <p>ATLAS is provided "as is". We do not promise it will be free of faults or available without interruption, and we
+  do not warrant that anything it calculates is accurate for your purposes.</p>
+
+  <h2>14. Limitation of liability</h2>
+  <p>To the extent the law allows, we are not liable for indirect or consequential loss, for lost data, or for injury
+  arising from how you train. Nothing here limits liability that cannot be limited by law. Where liability cannot be
+  excluded, it is capped at what you paid for ATLAS in the 12 months before the claim.</p>
+
+  <h2>15. Apple and Google</h2>
+  <p>These terms are between you and us, not Apple or Google. Neither of them is responsible for ATLAS or has any
+  obligation to support it, and any claim about ATLAS is for us to answer, not them. If you got ATLAS from the App
+  Store, Apple and its subsidiaries are third-party beneficiaries of these terms and may enforce them against you.</p>
+
+  <h2>16. Governing law</h2>
+  <p>These terms are governed by the laws of Israel, and its courts have exclusive jurisdiction, without prejudice to
+  consumer rights you have where you live.</p>
+
+  <h2>17. Contact</h2>
   <p><a href="mailto:spacebar.post@gmail.com">spacebar.post@gmail.com</a></p>
 </section>
 
@@ -128,77 +198,141 @@
 
 <section id="he" lang="he" dir="rtl">
   <h1>תנאי השימוש של ATLAS</h1>
-  <p class="date">עודכן לאחרונה ב־6 בספטמבר 2026</p>
+  <p class="date">עודכן לאחרונה ב־24 באוקטובר 2026</p>
 
   <div class="warn">
-    <p><strong>ATLAS אינה ייעוץ רפואי.</strong> זהו יומן אימונים. מומלץ להתייעץ עם רופא לפני התחלה
-    או שינוי של תוכנית אימונים, ולהפסיק אם משהו כואב.</p>
+    <p><strong>ATLAS אינה מכשיר רפואי ואינה ייעוץ רפואי.</strong> היא מתכננת ומתעדת אימונים, ואינה מאבחנת, מטפלת או
+    מונעת שום מצב רפואי. מומלץ להתייעץ עם רופא לפני שמתחילים או משנים אימונים, ולהפסיק אם משהו כואב.</p>
   </div>
 
   <h2>1. ההסכם</h2>
-  <p>התנאים האלה הם בין המשתמש לבין Bar Revah ("אנחנו"), המפרסמת של אפליקציית ATLAS.
-  התקנה או שימוש באפליקציה מהווים הסכמה להם. מי שאינו מסכים — אינו רשאי להשתמש באפליקציה.</p>
+  <p>ATLAS מפורסמת על ידי Bar Revah ("אנחנו"), וב־App Store היא מופיעה בשם ATLAS מאמן. התנאים האלה חלים על כל
+  שימוש ב־ATLAS: התקנה או שימוש באפליקציה הם הסכמה להם, ובלי הסכמה אין להשתמש בה. מה קורה לנתונים מוסבר
+  ב<a href="privacy-policy.html">מדיניות הפרטיות</a>. על ההורדה ועל הרכישות חלים גם הכללים של החנות, ה־App Store או
+  Google Play.</p>
 
-  <h2>2. מה ATLAS עושה</h2>
-  <p>ATLAS מתעדת את האימון: שגרות, אימונים, סטים, דופק והתקדמות. כל הצעה שהיא מציגה — משקל לנסות
-  בפעם הבאה, שריר שלא עבד השבוע — נגזרת ממה שנרשם. זהו מידע, לא הוראה, ואינו תחליף למאמן או לרופא.</p>
+  <h2>2. גיל השימוש</h2>
+  <p>ATLAS ב־App Store וב־Google Play מיועדת מגיל 13 ומעלה. לפני שמתחילים, האפליקציה שואלת על חודש ושנת לידה. מתחת
+  לגיל 18, רכישת מינוי דורשת אישור של הורה או אפוטרופוס. ב־iPhone, כשהאפשרות Ask to Buy פעילה בשיתוף המשפחתי,
+  הרכישה נשלחת קודם לאישור ההורה. ב־Android, ATLAS לא מציגה מחירים מתחת לגיל 18, ושם אפשר לקבל Pro רק עם קוד ATLAS
+  (סעיף 8).</p>
 
-  <h2>3. בריאות ובטיחות</h2>
-  <p>אימוני כוח כרוכים בסיכון לפציעה. האחריות על אופן האימון ועל ההחלטה מה בטוח היא של המשתמש.
-  נתוני הדופק המוצגים מגיעים מהמכשיר או מרצועה מחוברת, אינם מדידה רפואית, ואין להסתמך עליהם
-  לצורך החלטה בריאותית. בהרגשה רעה יש להפסיק ולפנות לעזרה רפואית.</p>
-
-  <h2>4. רישיון השימוש</h2>
-  <p>אנו מעניקים רישיון אישי, לא בלעדי ולא ניתן להעברה, לשימוש ב־ATLAS במכשירים שבבעלות או בשליטת
-  המשתמש, בכפוף לתנאי ה־App Store. אין להעתיק, למכור מחדש, לבצע הנדסה לאחור או להפיץ את האפליקציה,
-  ואין להשתמש בה לבניית מוצר מתחרה.</p>
-
-  <h2>5. נתונים ותוכן</h2>
-  <p>נתוני האימון נשארים על המכשיר — ראו <a href="privacy-policy.html">מדיניות הפרטיות</a>.
-  שגרות, הערות ותרגילים שנוצרו הם של המשתמש. מאחר שאיננו מחזיקים עותק, לא נוכל לשחזר אותם לאחר
-  מחיקת האפליקציה או אובדן המכשיר; מי שהדבר חשוב לו — מומלץ לגבות את הטלפון.</p>
-
-  <h2>6. מנויים</h2>
+  <h2>3. מה ATLAS עושה</h2>
+  <p>ל־ATLAS יש שני עולמות, ורק אחד מהם פעיל בכל פעם:</p>
   <ul>
-    <li>השימוש ב־ATLAS חינמי, וחלק מהיכולות שמורות ל־<strong>ATLAS Pro</strong>, מנוי מתחדש
-      אוטומטית — חודשי או שנתי.</li>
-    <li>מנויים חדשים מקבלים <strong>7 ימי ניסיון חינם</strong>. החיוב לחשבון Apple מתבצע בתום
-      תקופת הניסיון, אלא אם המנוי בוטל לפחות 24 שעות לפני סיומה.</li>
-    <li>המנוי מתחדש אוטומטית לאותה תקופה ובאותו מחיר, אלא אם החידוש האוטומטי כובה לפחות 24 שעות
-      לפני תום התקופה הנוכחית.</li>
-    <li>המחיר המוצג במסך המנוי הוא המחיר שייגבה, במטבע המקומי, כולל מס שנגבה על ידי Apple.</li>
-    <li>ניהול או ביטול בכל עת ב־App Store: השם שלך ← מנויים. מחיקת האפליקציה אינה מבטלת מנוי.</li>
-    <li>החזרים מטופלים על ידי Apple לפי מדיניותה; איננו יכולים לבצע אותם. יתרת תקופת ניסיון שלא
-      נוצלה פוקעת עם רכישת מנוי.</li>
+    <li><strong>ATLAS Gym</strong> בונה תוכנית אימוני כוח מהתשובות לשאלות, מציגה את האימון של כל יום עם המשקל והחזרות
+      שאליהם מכוונים, ומתעדת כל סט.</li>
+    <li><strong>ATLAS Football</strong> מתכננת אימון אתלטי (מהירות, זריזות, כוח מתפרץ, כוח, כושר ועבודה קצרה עם כדור)
+      סביב האימונים והמשחקים של הקבוצה, ומאפשרת להוסיף חברים עם קוד או קישור.</li>
+  </ul>
+  <p>אפשר להצטרף לעולם אחד או לשניהם, ולעבור ביניהם בלשונית אני ← העולמות שלי. כל מה ש־ATLAS מציעה, כמו משקל לנסות
+  בפעם הבאה, אימון קל יותר או יום מנוחה, נגזר מהתשובות וממה שנרשם. זה מידע, לא הוראה, ואינו תחליף למאמן או
+  לרופא.</p>
+
+  <h2>4. בריאות ובטיחות</h2>
+  <p>אימון כרוך בסיכון לפציעה. ההחלטה איך להתאמן ומה בטוח היא אישית, וגם האחריות עליה. כשמדווחים על כאב או מחלה,
+  ATLAS מקלה את האימון או עוצרת אותו, ולפעמים ממליצה לנוח או לקבל ייעוץ מקצועי. זו הכוונה כללית, לא אבחנה, והיא
+  אינה מחליפה אבחנה. דופק, השתנות דופק, שינה, VO2 max ונתונים אחרים מגיעים מהטלפון, משעון, מרצועה, מ־Apple Health
+  או מ־Health Connect. הם אינם מדידה רפואית, ואין להסתמך עליהם בהחלטה בריאותית. בהרגשה רעה יש להפסיק ולפנות לעזרה
+  רפואית.</p>
+
+  <h2>5. החשבון (רשות)</h2>
+  <p>כל מה שיש ב־ATLAS עובד גם בלי חשבון. אפשר להתחבר עם Apple ב־iPhone, או עם Google. החשבון שומר את ה־Pro,
+  המתנות וקודי ATLAS בכל טלפון שמתחברים בו, ומאפשר לנו לעזור כשכותבים אלינו. הוא לא מעתיק את האימונים ולא מגבה
+  אותם. ATLAS לא מציעה חשבון כשהיא יודעת שהגיל מתחת ל־13.</p>
+  <ul>
+    <li>גישה לחשבון ה־Apple או ה־Google היא גם גישה לחשבון ATLAS, ולכן חשוב לשמור עליו.</li>
+    <li>אפשר להתנתק בכל עת. האימונים נשארים בטלפון ו־ATLAS ממשיכה לעבוד.</li>
+    <li>אפשר למחוק את החשבון בכל עת בלשונית אני ← חשבון ← מחיקת החשבון, או באימייל בלי האפליקציה. הפרטים בעמוד
+      <a href="delete-account.html#he">מחיקת חשבון ATLAS</a>. גישת Pro שניתנה על ידינו או שהגיעה מקוד ATLAS מסתיימת
+      עם החשבון, ואי אפשר להחזיר אותה. מחיקת החשבון לא מבטלת מינוי מהחנות.</li>
   </ul>
 
-  <h2>7. שינויים באפליקציה ובתנאים</h2>
-  <p>אנו רשאים להוסיף, לשנות או להסיר יכולות, ולעדכן את התנאים. בשינוי מהותי נודיע על כך באפליקציה
-  ונעדכן את התאריך למעלה. המשך שימוש לאחר מכן מהווה הסכמה לתנאים החדשים. מי שאינו מסכים לשינוי
-  ביכולת בתשלום — רשאי לבטל את המנוי.</p>
+  <h2>6. נתונים ותוכן</h2>
+  <p>נתוני האימון נשארים בטלפון. הם לא מועלים לשרת שלנו, גם כשיש חשבון (הפרטים
+  ב<a href="privacy-policy.html">מדיניות הפרטיות</a>). אימונים, הערות וכל מה שנוצר ב־ATLAS שייכים לך. מאחר שאין
+  אצלנו עותק, אי אפשר לשחזר אותם אחרי מחיקת האפליקציה, מחיקת כל הנתונים או אובדן הטלפון. בלשונית אני ← נתונים ←
+  ייצוא הנתונים שלי אפשר לקבל את כולם כקובץ, וגם הגיבוי של הטלפון עצמו יכול לכלול אותם.</p>
 
-  <h2>8. סיום השימוש</h2>
-  <p>אפשר להפסיק בכל עת על ידי מחיקת האפליקציה. אנו רשאים להשעות גישה אם נעשה שימוש בלתי חוקי
-  באפליקציה או שימוש הפוגע בשירות או באחרים.</p>
+  <h2>7. ATLAS Pro</h2>
+  <ul>
+    <li>השימוש ב־ATLAS חינמי. בעולם חדר הכושר יש יכולות ששמורות ל־<strong>ATLAS Pro</strong>, ומסך ה־Pro מפרט אותן.
+      עולם הכדורגל כולו חינמי בשלב זה.</li>
+    <li>‏Pro הוא מינוי מתחדש אוטומטית, חודשי או שנתי. הוא נקנה דרך ה־App Store ב־iPhone או דרך Google Play
+      ב־Android, ומחויב בחשבון החנות. המחיר שמוצג במסך ה־Pro הוא המחיר לתשלום, במטבע המקומי, כולל מס שהחנות
+      גובה.</li>
+    <li><strong>ניסיון חינם.</strong> הניסיון החינמי היחיד הוא הצעת ההיכרות של החנות, 7 ימים, כשהחנות קובעת שיש
+      זכאות (בדרך כלל במינוי הראשון). הכפתור במסך ה־Pro אומר אז זאת. החיוב מתבצע בסוף הניסיון, אלא אם מבטלים:
+      ב־App Store לפחות 24 שעות לפני סופו, וב־Google Play לפני סופו. יתרת ניסיון שלא נוצלה פוקעת עם רכישת
+      מינוי.</li>
+    <li><strong>חידוש.</strong> המינוי מתחדש אוטומטית לאותה תקופה, אלא אם מבטלים אותו: ב־App Store לפחות 24 שעות לפני
+      סוף התקופה הנוכחית, וב־Google Play לפני סופה. אם המחיר משתנה, החנות מודיעה על כך מראש, ובמקרים שהכללים שלה
+      דורשים, מבקשת הסכמה.</li>
+    <li><strong>ניהול וביטול.</strong> ב־iPhone: הגדרות ← השם בראש המסך ← מינויים. ב־Android: באפליקציית Google Play ←
+      תשלומים ומינויים ← מינויים. ב־ATLAS, אני ← מנוי ← ניהול המנוי פותח את אותו עמוד. אחרי ביטול, ה־Pro נשאר עד סוף התקופה
+      ששולמה. מחיקת האפליקציה או החשבון לא מבטלת מינוי.</li>
+    <li><strong>שחזור רכישות</strong> (במסך ה־Pro ובלשונית אני ← מנוי) מחזיר מינוי שנקנה באותו חשבון Apple או Google,
+      למשל בטלפון חדש או אחרי התקנה מחדש של ATLAS.</li>
+    <li><strong>החזרים.</strong> ב־App Store ההחלטה על החזר היא של Apple, לפי המדיניות שלה, ואין לנו אפשרות לבצע
+      אותו. ב־Google Play ההחזרים כפופים למדיניות של Google Play: אפשר לבקש מ־Google Play, או לכתוב אלינו.</li>
+  </ul>
 
-  <h2>9. ללא אחריות</h2>
-  <p>ATLAS ניתנת כמות שהיא. איננו מתחייבים שתהיה נקייה מתקלות או זמינה ללא הפרעה, ואיננו מתחייבים
-  שחישוב כלשהו שהיא מבצעת מדויק לצרכיו של המשתמש.</p>
+  <h2>8. קודים ומתנות</h2>
+  <ul>
+    <li><strong>ב־iPhone</strong> הקודים הם קודי הטבה של ה־App Store. ממשים אותם במסך של Apple («מימוש קוד», במסך
+      ה־Pro או בלשונית אני), והתנאים של Apple חלים עליהם. ב־iPhone אין קודי ATLAS.</li>
+    <li><strong>ב־Android</strong> קוד של Google Play ממומש בעמוד של Google Play. קוד ATLAS מקלידים ב־ATLAS (אני ←
+      חשבון ← מימוש קוד ATLAS); הוא דורש חשבון ונבדק בשרת שלנו. הוא נותן Pro למספר הימים שהאפליקציה מציגה במימוש,
+      או לכל החיים. הוא אף פעם לא מתחדש ואף פעם לא מחייב.</li>
+    <li>קוד מהחנות יכול להתחיל מינוי שמתחדש במחיר הרגיל בסוף ההטבה. החנות אומרת זאת במימוש, ומבטלים אותו בחנות כמו כל
+      מינוי.</li>
+    <li><strong>מתנות.</strong> אנחנו יכולים לתת לחשבון Pro למספר ימים או לכל החיים. האפליקציה מציגה אותו כמתנה, עם
+      תאריך הסיום. הוא לא מתחדש ולא מחויב.</li>
+    <li>קודי ATLAS ומתנות הם בחינם. אין להם ערך כספי, ואי אפשר למכור אותם או להמיר אותם בכסף. כל קוד אפשר לממש פעם אחת
+      בכל חשבון, וקוד יכול לפוג או להיגמר. אנחנו רשאים לבטל קוד או מתנה שהושגו שלא בהגינות (למשל בניחוש קודים) או
+      שניתנו בטעות. ‏Pro מקוד או ממתנה שייך לחשבון ומסתיים אם החשבון נמחק.</li>
+  </ul>
 
-  <h2>10. הגבלת אחריות</h2>
-  <p>ככל שהדין מתיר, איננו אחראים לנזק עקיף או תוצאתי, לאובדן נתונים, או לפגיעה הנובעת מאופן האימון.
-  אין באמור כדי להגביל אחריות שלא ניתן להגבילה על פי דין. במקום שבו לא ניתן לשלול אחריות, היא
-  מוגבלת לסכום ששולם עבור ATLAS בשנים־עשר החודשים שקדמו לתביעה.</p>
+  <h2>9. חברים ושיתוף</h2>
+  <p>כרטיסי שיתוף, כרטיסי חבר, הזמנות וקבצים מיוצאים נשלחים רק לאן שבוחרים לשלוח אותם, והאחריות על מה שמשתפים היא
+  שלך. בעולם הכדורגל, כרטיס חבר מציג רק את מספר האימונים בשבוע ואת רצף השבועות. השם על הכרטיס צריך להיות בלי
+  התחזות לאחרים ובלי פגיעה באיש.</p>
 
-  <h2>11. Apple</h2>
-  <p>Apple אינה צד לתנאים אלה ואינה חייבת לספק תמיכה ל־ATLAS. עם זאת, Apple היא מוטבת צד שלישי
-  של תנאים אלה ורשאית לאכוף אותם.</p>
+  <h2>10. רישיון השימוש</h2>
+  <p>אנחנו מעניקים רישיון אישי, לא בלעדי ולא ניתן להעברה, לשימוש ב־ATLAS במכשירים שבבעלותך או בשליטתך, בכפוף לכללי
+  השימוש של ה־App Store או לתנאים של Google Play. אין להעתיק, למכור מחדש, לבצע הנדסה לאחור (אלא אם הדין מתיר זאת)
+  או להפיץ את האפליקציה, ואין להשתמש בה לבניית מוצר מתחרה. אין לנצל לרעה את השרת שלנו, למשל בניחוש קודים או בגישה
+  אוטומטית.</p>
 
-  <h2>12. הדין החל</h2>
-  <p>על תנאים אלה חל דין Israel, ולבתי המשפט שם סמכות ייחודית, מבלי לגרוע מזכויות
-  צרכניות הנתונות למשתמש במקום מגוריו.</p>
+  <h2>11. שינויים באפליקציה ובתנאים</h2>
+  <p>אנחנו רשאים להוסיף, לשנות או להסיר יכולות, ולעדכן את התנאים. עדכונים מגיעים דרך ה־App Store ו־Google Play,
+  ותיקונים קטנים יכולים להגיע גם בתוך האפליקציה כשהיא נפתחת. בשינוי מהותי בתנאים נאמר זאת באפליקציה ונעדכן את
+  התאריך למעלה. המשך השימוש אחרי כן הוא הסכמה לתנאים החדשים. בלי הסכמה לשינוי ביכולת בתשלום, אפשר לבטל את
+  המינוי.</p>
 
-  <h2>13. יצירת קשר</h2>
+  <h2>12. סיום השימוש</h2>
+  <p>אפשר להפסיק בכל עת: למחוק את האפליקציה, ואם יש חשבון, גם את החשבון. אנחנו רשאים להשעות או לסגור חשבון, או
+  להפסיק Pro שנתנו, אם נעשה ב־ATLAS שימוש בלתי חוקי, שימוש לרעה בקודים, או שימוש שפוגע בשירות או באחרים.</p>
+
+  <h2>13. ללא אחריות</h2>
+  <p>ATLAS ניתנת כמות שהיא. איננו מתחייבים שתהיה נקייה מתקלות או זמינה בלי הפרעה, ואיננו מתחייבים שכל חישוב שלה
+  מדויק לצורך מסוים.</p>
+
+  <h2>14. הגבלת אחריות</h2>
+  <p>ככל שהדין מתיר, איננו אחראים לנזק עקיף או תוצאתי, לאובדן נתונים, או לפגיעה הנובעת מאופן האימון. אין באמור כדי
+  להגביל אחריות שלא ניתן להגבילה על פי דין. במקום שבו לא ניתן לשלול אחריות, היא מוגבלת לסכום ששולם עבור ATLAS
+  ב־12 החודשים שקדמו לתביעה.</p>
+
+  <h2>15. Apple ו־Google</h2>
+  <p>התנאים האלה הם בינך לבינינו, ולא מול Apple או Google. אף אחת מהן אינה אחראית ל־ATLAS או חייבת לתמוך בה, וטענות
+  לגבי ATLAS מופנות אלינו ולא אליהן. כש־ATLAS הורדה מה־App Store, Apple והחברות הבנות שלה הן מוטבות צד שלישי של
+  תנאים אלה ורשאיות לאכוף אותם.</p>
+
+  <h2>16. הדין החל</h2>
+  <p>על תנאים אלה חלים דיני מדינת ישראל, ולבתי המשפט בישראל סמכות שיפוט ייחודית, מבלי לגרוע מזכויות צרכניות לפי
+  הדין במקום המגורים.</p>
+
+  <h2>17. יצירת קשר</h2>
   <p><a href="mailto:spacebar.post@gmail.com">spacebar.post@gmail.com</a></p>
 </section>
 
